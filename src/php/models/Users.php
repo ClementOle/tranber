@@ -6,7 +6,7 @@ use tranber\structures\Model;
 
 class Users extends Model
 {
-	public function loginExists(string $login) :bool
+	public function loginExists(string $login): bool
 	{
 		$sql      = "SELECT * FROM users WHERE login=:login";
 		$database = $this->getApp()->getDatabase();
@@ -18,7 +18,7 @@ class Users extends Model
 		return !empty($database->query($sql, $data));
 	}
 
-	public function emailExists(string $email) :bool
+	public function emailExists(string $email): bool
 	{
 		$sql      = "SELECT * FROM users WHERE email=:email";
 		$database = $this->getApp()->getDatabase();
@@ -37,11 +37,21 @@ class Users extends Model
 		$data = [
 			':login'    => $login,
 			':email'    => $email,
-			':password' => $password,
+			':password' => \password_hash($password, \PASSWORD_DEFAULT),
 		];
 		$database = $this->getApp()->getDatabase();
 		return $database->query($sql, $data, false);
 	}
 
+	public function logIn(string $login, string $password)
+	{
+		$sql = "SELECT * FROM users WHERE login=:login";
+		$data = [
+			':login' => $login,
+		];
+		$database = $this->getApp()->getDatabase();
+		$user = $database->query($sql, $data);
 
+		return ($user && array_key_exists(0, $user) && \password_verify($password, $user[0]['password'])) ? $user[0] : null;
+	}
 }
