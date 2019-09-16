@@ -2,8 +2,11 @@
 
 $title       = $title   ?? 'Tranber';
 $siteUrl     = $siteUrl ?? '';
-$signUpUrl   = $siteUrl.'sign-up';
-$signInUrl   = $siteUrl.'sign-in';
+$signUpUrl   = $siteUrl . 'sign-up';
+$signInUrl   = $siteUrl . 'sign-in';
+$signOutUrl = $siteUrl . 'sign-out';
+$updateProfileUrl = $siteUrl . 'update-profile';
+$clientLogged = $clientLogged ?? false;
 
 ?><nav class="blk_Navbar">
 	<div class="elm_Navbar_Title">
@@ -13,12 +16,22 @@ $signInUrl   = $siteUrl.'sign-in';
 	</div>
 	<div class="elm_Navbar_Menu">
 		<ul class="blk_Menu blk_Menu-navbar">
-			<li class="elm_Menu_Item elm_Menu_Item-navbar">
-				<a href="<?= $signUpUrl ?>" class="atm_Link atm_Link-menu atm_Link-navbar atm_Link-navbarMenu">Sign up</a>
-			</li>
-			<li class="elm_Menu_Item elm_Menu_Item-navbar">
-				<a href="<?= $signInUrl ?>" class="atm_Link atm_Link-menu atm_Link-navbar atm_Link-navbarMenu">Sign In</a>
-			</li>
+			<?php if ($clientLogged) : ?>
+				<li class="elm_Menu_Item elm_Menu_Item-navbar">
+					<a href="<?= $signOutUrl ?>" class="atm_Link atm_Link-menu atm_Link-navbar atm_Link-navbarMenu">Sign Out</a>
+				</li>
+				<li class="elm_Menu_Item elm_Menu_Item-navbar">
+					<a href="<?= $updateProfileUrl ?>" class="atm_Link atm_Link-menu atm_Link-navbar atm_Link-navbarMenu">Update Profile</a>
+				</li>
+			<?php else : ?>
+				<li class="elm_Menu_Item elm_Menu_Item-navbar">
+					<a href="<?= $signUpUrl ?>" class="atm_Link atm_Link-menu atm_Link-navbar atm_Link-navbarMenu">Sign up</a>
+				</li>
+
+				<li class="elm_Menu_Item elm_Menu_Item-navbar">
+					<a href="<?= $signInUrl ?>" class="atm_Link atm_Link-menu atm_Link-navbar atm_Link-navbarMenu">Sign In</a>
+				</li>
+			<?php endif ?>
 		</ul>
 	</div>
 </nav>

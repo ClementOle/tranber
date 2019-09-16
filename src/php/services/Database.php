@@ -16,7 +16,7 @@ class Database extends Service implements DatabaseInterface
 		$host   = $dbConf['host']   ?? 'localhost';
 		$name   = $dbConf['name']   ?? 'tranber';
 		$user   = $dbConf['user']   ?? 'root';
-		$pass   = $dbConf['pass']   ?? '';
+		$pass   = $dbConf['pass']   ?? 'root';
 
 		try {
 			$this->pdo = new \PDO('mysql:host='.$host.';dbname='.$name, $user, $pass);

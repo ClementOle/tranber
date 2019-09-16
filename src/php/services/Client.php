@@ -2,6 +2,7 @@
 
 namespace tranber\services;
 
+use tranber\models\Users;
 use tranber\structures\Service;
 
 class Client extends Service implements ClientInterface
@@ -26,6 +27,10 @@ class Client extends Service implements ClientInterface
         $_SESSION['user'] = [];
         return $this;
 
+    }
+
+    public function getUser(): iterable {
+        return $_SESSION['user'] ?? null;
     }
 
 

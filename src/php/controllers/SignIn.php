@@ -21,7 +21,6 @@ class SignIn extends Controller implements SignInInterface
 
 				if ($user) {
 					//Connection
-
 					$client = Client::getInstance();
 					$client->logIn($user);
 
