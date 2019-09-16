@@ -64,11 +64,6 @@ class Users extends Model
 		];
 		$database = $this->getApp()->getDatabase();
 		$user = $database->query($sql, $data);
-        if($user && array_key_exists(0, $user) && \password_verify($password, $user[0]['password'])) {
-            $this->setId($user[0]['id']);
-            $this->setLogin($user[0]['login']);
-            $this->setEmail($user[0]['email']);
-        }
 		return ($user && array_key_exists(0, $user) && \password_verify($password, $user[0]['password'])) ? $user[0] : null;
 	}
 

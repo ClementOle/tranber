@@ -15,12 +15,14 @@ $data = [
 	'routes'   => [
 		'/'       => 'tranber\controllers\Home',
 		'sign-in' => 'tranber\controllers\SignIn',
-		'sign-up' => 'tranber\controllers\SignUp'
+		'sign-up' => 'tranber\controllers\SignUp',
+		'sign-out' => 'tranber\controllers\SignOut',
+		'update-profile' => 'tranber\controllers\UpdateProfile'
 	],
 	'database' => [
 		'name' => 'tranber',
 		'user' => 'root',
-		'pass' => '',
+		'pass' => 'root',
 		'host' => 'localhost',
 	],
 ];

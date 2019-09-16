@@ -42,7 +42,6 @@ class Database extends Service implements DatabaseInterface
 		}
 		catch(Exception $e) {
 			echo fn\htmlErrorFromException($e);
-			// echo $e->getMessage().' in '.$e->getFile().', l.'.$e->getLine();
 			die;
 		}
 	}
