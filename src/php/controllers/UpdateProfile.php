@@ -51,6 +51,7 @@ class UpdateProfile extends Controller implements UpdateProfileInterface
                         echo fn\htmlError($error);
                     }
                 }
+
             }
         }
         $view = new UpdateProfileView($users['id'], $users['login'], $users['email']);
