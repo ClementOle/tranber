@@ -19,6 +19,7 @@ class SignUp extends Controller implements SignUpInterface
 			$login    = $_POST['login']    ?? null;
 			$password = $_POST['password'] ?? null;
 			$email    = $_POST['email']    ?? null;
+			$avatarName = '';
 
 			if ($login && $password && $email) {
 				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -33,7 +34,7 @@ class SignUp extends Controller implements SignUpInterface
 					$errors[] = 'Cet email existe déjà';
 				}
 
-				if (empty($errors) && $model->createUser($login, $password, $email)) {
+				if (empty($errors) && $model->createUser($login, $password, $email, $avatarName)) {
 					$conf    = $this->app->getConf();
 					$data    = $conf->getData();
 					$siteUrl = $data['site-url'];

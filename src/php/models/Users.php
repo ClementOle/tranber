@@ -31,26 +31,28 @@ class Users extends Model
 		return !empty($database->query($sql, $data));
 	}
 
-	public function createUser(string $login, string $password, string $email)
+	public function createUser(string $login, string $password, string $email, $avatarName)
 	{
-		$sql = "INSERT INTO users (login, email, password) 
-				VALUES (:login, :email, :password)";
+		$sql = "INSERT INTO users (login, email, password, avatarName) 
+				VALUES (:login, :email, :password, :avatarName)";
 		$data = [
 			':login'    => $login,
 			':email'    => $email,
 			':password' => \password_hash($password, \PASSWORD_DEFAULT),
+            ':avatarName' => $avatarName
 		];
 		$database = $this->getApp()->getDatabase();
 		return $database->query($sql, $data, false);
 	}
 
-	public function updateUser(string $id, string $login, string $email)
+	public function updateUser(string $id, string $login, string $email, string $avatarName)
 	{
-		$sql = "UPDATE users SET login= :login, email= :email WHERE id = :id";
+		$sql = "UPDATE users SET login= :login, email= :email, avatarName= :avatarName WHERE id = :id";
 		$data = [
 		    ':id' => $id,
 			':login' => $login,
 			':email' => $email,
+            ':avatarName' => $avatarName,
 		];
 		$database = $this->getApp()->getDatabase();
 		return $database->query($sql, $data, false);
